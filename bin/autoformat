@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Get selected files
+for var in "$@"
+do
+  if [[ $var =~ .*\*.* ]] ; then
+    # If string contains wildcard, get matching files via find
+    ignore_hidden_folders="-not -path '*/.*/*'"
+    ignore_tmp_dir="-not -path './tmp/*'"
+    select_extensions="-type f \( -iname \*.rb -o -iname \*.erb -o -iname \*.css -o -iname \*.js -o -iname \*.coffee -o -iname \*.scss -o -iname \*.sass -o -iname \*.feature \)"
+    find_command="find . $ignore_hidden_folders $ignore_tmp_dir -iwholename \"./$var\" $select_extensions"
+    files="$files `eval $find_command`"
+  elif [[ $var =~ ^.*\.(rb)|(erb)|(css)|(js)|(coffee)|(scss)|(sass)|(feature)$ ]]; then
+    # Else just add the file if it's an acceptable type
+    files="$files $var"
+  fi
+done
+
+# Run VIM autoformatter against all those files
+# Note: autoformatrails_tmp is an ugly hack because VIM always parses the first file incorrectly
+format_command="vim /tmp/autoformatrails_tmp $files -n -c ':set nomore | :bufdo execute \":silent call AutoFormatRails() | update\"' -c 'q'"
+eval $format_command

@@ -1,4 +1,5 @@
 echo "Loading .aliases.local"
+
 # Productivity
 alias todo='$EDITOR ~/.todo'
 
@@ -8,3 +9,69 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 
 # Tmux 
 alias tmux="tmux -2"
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+
+# Basic directory operations
+alias ...='cd ../..'
+alias -- -='cd -'
+
+# Super user
+alias _='sudo'
+alias please='sudo'
+
+#alias g='grep -in'
+
+# Show history
+alias history='fc -l 1'
+
+# List direcory contents
+alias lsa='ls -lah'
+alias l='ls -lA1'
+alias ll='ls -l'
+alias la='ls -lA'
+alias sl=ls # often screw this up
+
+alias afind='ack-grep -il'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# Shortcuts
+alias d="cd ~/Dropbox"
+alias p="cd ~/Projects"
+alias g="git"
+alias h="history"
+alias j="jobs"
+alias v="vim"
+alias m="mate ."
+alias s="subl ."
+alias o="open"
+alias oo="open ."
+
+# git
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
+# glo -p  if you want to see the lines that changed
+alias glo="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+# change from: http://www.readysetrails.com/index.php/2111/5-mistakes-that-make-you-look-like-a-rails-n00b/
+# you can see the full history, with changes and explanation messages with a command like:
+# gwc app/models/user.rb
+alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
+# added alan maciel 2 ago 2013
+alias ctags="`brew --prefix`/bin/ctags"

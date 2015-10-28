@@ -1,0 +1,141 @@
+
+# Use vim keybindings in copy mode
+setw -g mode-keys vi
+set-window-option -g utf8 on
+
+# Setup 'v' to begin selection as in Vim
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+
+# start tmux with a login shell otherwise rvm will complain
+#set -g default-command "$SHELL --login"  
+# # use your normal shell with tmux
+#set -g default-shell $SHELL  
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+set-option -g default-shell /bin/zsh
+
+set -g status on
+set -g status-utf8 on
+
+# Copy mode
+setw -g mode-keys vi
+bind ` copy-mode
+#unbind [
+unbind p
+bind p paste-buffer
+bind -t vi-copy v begin-selection
+bind -t vi-copy y copy-selection
+bind -t vi-copy Escape cancel
+bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+
+set -g default-terminal "screen-256color"
+TERM=screen-256color
+set -g history-limit 20000
+# use VI
+set-window-option -g mode-keys vi
+
+# Use ctrl-a instead of ctrl-b
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+bind a send-prefix
+
+# enable utf-8 on status bar
+set -g status on
+set -g status-utf8 on
+
+# status refresh interval
+set -g status-interval 2
+
+# reload config
+unbind r
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+unbind ^T
+bind ^T split-window -p 25
+
+# horizontal and vertical splits
+unbind |
+bind | split-window -h
+unbind _
+bind _ split-window
+
+# tile all windows
+unbind =
+bind = select-layout tiled
+
+# cycle through panes
+unbind ^A
+bind ^A select-pane -t :.+
+
+unbind Right
+bind Right resize-pane -R 8
+unbind Left
+bind Left resize-pane -L 8
+unbind Up
+bind Up resize-pane -U 4
+unbind Down
+bind Down resize-pane -D 4
+
+unbind h
+bind h select-pane -L
+unbind j
+bind j select-pane -D
+unbind k
+bind k select-pane -U
+unbind l
+bind l select-pane -R
+
+# status bar
+# set -g status-bg black
+# set -g status-fg yellow
+# set -g status-interval 1
+# set -g status-right-length 60
+set -g renumber-windows on
+set -g base-index 1
+set -g pane-base-index 1
+
+# set -g status-left ' '
+#set -g status-right '#(battery-life) (#(battery-time)) #[fg=yellow]%Y-%m-%d %H:%M#[default] '
+# set -g status-right '#[fg=yellow]%Y-%m-%d %H:%M#[default] '
+
+# set-window-option -g window-status-current-bg yellow
+# set-window-option -g window-status-current-fg black
+
+#### COLOUR (Solarized dark)
+#
+## default statusbar colors
+# set-option -g status-bg black #base02
+# set-option -g status-fg yellow #yellow
+# set-option -g status-attr default
+
+# default window title colors
+# set-window-option -g window-status-fg brightblue #base0
+# set-window-option -g window-status-bg default
+# set-window-option -g window-status-attr dim
+
+## active window title colors
+# set-window-option -g window-status-current-fg black #brightred #orange
+# set-window-option -g window-status-current-bg yellow #default
+# set-window-option -g window-status-current-attr bright
+
+## pane border
+# set-option -g pane-border-fg black #base02
+# set-option -g pane-active-border-fg brightgreen #base01
+# set-option -g pane-active-border-fg green
+
+## message text
+# set-option -g message-bg black #base02
+# set-option -g message-fg brightred #orange
+
+## pane number display
+# set-option -g display-panes-active-colour blue #blue
+# set-option -g display-panes-colour brightred #orange
+
+## clock
+# set-window-option -g clock-mode-colour green #green
+

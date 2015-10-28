@@ -1,0 +1,5 @@
+Plug 'bling/vim-airline'
+Plug 'stephenmckinney/vim-solarized-powerline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'altercation/vim-colors-solarized'

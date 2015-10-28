@@ -1,0 +1,10 @@
+echo "Loading .aliases.local"
+# Productivity
+alias todo='$EDITOR ~/.todo'
+
+# Show/hide files in Finder
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# Tmux 
+alias tmux="tmux -2"

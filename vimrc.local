@@ -56,7 +56,7 @@ let g:airline_powerline_fonts = 1
 set listchars=trail:·
 set list
 
-silent! call pathogen#runtime_append_all_bundles()
+" silent! call pathogen#runtime_append_all_bundles()
 
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.

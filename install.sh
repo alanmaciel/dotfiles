@@ -6,4 +6,5 @@ ln -s dotfiles-local/tmux.conf.local ~/.tmux.conf.local
 ln -s dotfiles-local/tmuxinator.zsh ~/.tmuxinator.zsh
 ln -s dotfiles-local/gitconfig.local ~/.gitconfig.local
 ln -s dotfiles-local/zshrc.local ~/.zshrc.local
+ln -s dotfiles-local/gitignore.local ~/.gitignore
 echo "Done! enjoy"

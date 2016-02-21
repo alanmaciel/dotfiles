@@ -139,3 +139,4 @@ set -g pane-base-index 1
 ## clock
 # set-window-option -g clock-mode-colour green #green
 
+set-option -g allow-rename off

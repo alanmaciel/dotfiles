@@ -105,4 +105,4 @@ nls() {
   ls -c ~/notes/ | grep "$1"
 }
 
-source ~/.tmuxinator.zsh
+# source ~/.tmuxinator.zsh

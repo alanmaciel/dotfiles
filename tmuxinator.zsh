@@ -1,5 +1,5 @@
 echo "Loading tmuxinator.zsh"
-#compdef tmuxinator mux
+compdef tmuxinator mux
 
 _tmuxinator() {
   local commands projects

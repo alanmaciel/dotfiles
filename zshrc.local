@@ -65,7 +65,6 @@ bindkey -v
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git)
 
-source ~/.tmuxinator.zsh
 
 # Customize to your needs...
 #export PATH="$HOME/.rvm/bin:$HOME/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/android-sdk/tools:/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
@@ -105,3 +104,5 @@ n() {
 nls() {
   ls -c ~/notes/ | grep "$1"
 }
+
+source ~/.tmuxinator.zsh

@@ -7,4 +7,5 @@ ln -s dotfiles-local/tmuxinator.zsh ~/.tmuxinator.zsh
 ln -s dotfiles-local/gitconfig.local ~/.gitconfig.local
 ln -s dotfiles-local/zshrc.local ~/.zshrc.local
 ln -s dotfiles-local/gitignore.local ~/.gitignore
+ln -s dotfiles-local/spacemacs.local ~/.spacemacs
 echo "Done! enjoy"

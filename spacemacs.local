@@ -23,31 +23,34 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
      emacs-lisp
-     ;; git
-     ;; markdown
-     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     ;; version-control
      ;;
      ;; GENERAL LAYERS
      auto-completion
      better-defaults
      colors
+     org
      osx
      shell
      spotify
      syntax-checking
      themes-megapack
+     ;; COMPLETION
+     ;; CONFIGURATION FILES
+     ;; E-MAIL
+     ;; FRAMEWORKS
+     react
+     ruby-on-rails
      ;; FUN
      emoji
-     ;; PROGRAMMING LANGUAGES
+     ;; IRC
+     ;; KEYBOARD LAYOUTS
+     ;; PROGRAMMING AND MARKUP LANGUAGES
      elixir
      elm
      erlang
@@ -62,10 +65,15 @@ values."
      git
      github
      ;; TOOLS
-     ;;ranger
-     tmux
+     ;;command-log
+     ;;dash
+     ;;evernote
+     ranger
+     ;;tmux
+     ;;wakatime
      ;; VIM
-     ;; vim-powerline
+     ;;vim-powerline
+     ;; WINDOW MANAGEMENT
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -148,9 +156,9 @@ values."
    ;;                             :weight normal
    ;;                             :width normal
    ;;                             :powerline-scale 1.1)
-   dotspacemacs-default-font '("MonacoB"
+   dotspacemacs-default-font '("Source Code Pro"
                                :size 13
-                               :weight bold
+                               :weight normal
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -288,7 +296,7 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (global-hl-line-mode -1) ; Disable current line highlight
-  (setq powerline-default-separator 'arrow)
+  (setq powerline-default-separator 'utf-8)
   (setq-default dotspacemacs-configuration-layers '(
      (osx :variables osx-use-option-as-meta nil)))
   (setq-default mac-right-option-modifier nil)

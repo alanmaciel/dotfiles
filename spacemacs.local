@@ -300,6 +300,7 @@ layers configuration. You are free to put any user code."
   (setq-default dotspacemacs-configuration-layers '(
      (osx :variables osx-use-option-as-meta nil)))
   (setq-default mac-right-option-modifier nil)
+  (setq mac-system-move-file-to-trash-use-finder nil)
 )
 
 

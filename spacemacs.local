@@ -51,6 +51,7 @@ values."
      ;; IRC
      ;; KEYBOARD LAYOUTS
      ;; PROGRAMMING AND MARKUP LANGUAGES
+     asciidoc
      elixir
      elm
      erlang
@@ -69,7 +70,7 @@ values."
      ;;dash
      ;;evernote
      ranger
-     ;;tmux
+     tmux
      ;;wakatime
      ;; VIM
      ;;vim-powerline

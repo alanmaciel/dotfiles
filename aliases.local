@@ -75,3 +75,6 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 # added alan maciel 2 ago 2013
 alias ctags="`brew --prefix`/bin/ctags"
+
+# tmuxinator
+alias mux="tmuxinator"

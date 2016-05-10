@@ -193,3 +193,8 @@ set cursorline cursorcolumn
 hi CursorLine term=bold cterm=bold ctermbg=black
 hi CursorColumn term=bold cterm=bold ctermbg=black
 hi ColorColumn term=bold cterm=bold ctermbg=black
+
+highlight Comment cterm=italic
+highlight Comment ctermfg=blue
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"

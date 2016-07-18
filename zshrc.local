@@ -4,10 +4,19 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="alanm"
 source $ZSH/oh-my-zsh.sh
 export TERM="xterm-256color-italic"
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin:$HOME/.kerl
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+
+# added by alan maciel
+# using Erlang 19 installation via kerl
+#. ~/.kerl/installations/erlang_18_3/activate
+. ~/.kerl/installations/erlang_19/activate
+
+# added by alan maciel
+# using kiex
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # added by alan maciel
 # according to triumverate http://www.drbunsen.org/text-triumvirate.html 

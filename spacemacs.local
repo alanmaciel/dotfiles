@@ -34,6 +34,8 @@ values."
      auto-completion
      better-defaults
      colors
+     finance
+     jabber
      org
      osx
      shell
@@ -44,6 +46,8 @@ values."
      ;; == COMPLETION ====
      ;; == CONFIGURATION FILES ====
      ;; == E-MAIL ====
+     ;;gnus
+     mu4e
      ;; == FRAMEWORKS ====
      react
      ruby-on-rails
@@ -124,7 +128,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -145,11 +149,13 @@ values."
    ;;                       monokai
    ;;                       zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
-   dotspacemacs-themes '(molokai
-                         spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark)
+   dotspacemacs-themes '(railscasts
+                         twilight-bright
+                         spacemacs-light)
+                         ;;molokai
+                         ;;spacemacs-dark
+                         ;;solarized-light
+                         ;;solarized-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
@@ -159,10 +165,10 @@ values."
    ;;                             :width normal
    ;;                             :powerline-scale 1.1)
    dotspacemacs-default-font '("Operator Mono"
-                               :size 13
+                               :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -259,7 +265,8 @@ values."
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
    ;; dotspacemacs-line-numbers nil
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers 'prog-mode
+   ;; dotspacemacs-line-numbers 'relative
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -297,13 +304,64 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (global-hl-line-mode -1) ; Disable current line highlight
-  (setq powerline-default-separator 'utf-8)
   (setq-default dotspacemacs-configuration-layers '(
      (osx :variables osx-use-option-as-meta nil)))
   (setq-default mac-right-option-modifier nil)
   (setq mac-system-move-file-to-trash-use-finder nil)
-)
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 2)
+  (setq-default c-basic-offset 2)
+  (setq indent-line-function 'insert-tab)
+  (setq-default dotspacemacs-configuration-layers
+                '((mu4e :variables
+                        mu4e-installation-path "/usr/share/emacs/site-lisp")))
+  (setq mu4e-account-alist
+        '(("keybcowb@gmail"
+           ;; Under each account, set the account-specific variables you want.
+           (mu4e-sent-messages-behavior delete)
+           (mu4e-sent-folder "/keyb/.Sent")
+           (mu4e-drafts-folder "/keyb/.Drafts")
+           (user-mail-address "keybcowb@gmail.com")
+           (user-full-name "Keyboard Cowboy"))
+          ("alan.maciel.salcedo@gmail"
+           ;; Under each account, set the account-specific variables you want.
+           (mu4e-sent-messages-behavior delete)
+           (mu4e-sent-folder "/alan/.Sent")
+           (mu4e-drafts-folder "/alan/.Drafts")
+           (user-mail-address "alan.maciel.salcedo@gmail.com")
+           (user-full-name "Alan M."))
+          ))
+  (mu4e/mail-account-reset)
 
+  ;;; Set up some common mu4e variables
+  (setq mu4e-maildir "~/.mail"
+        mu4e-trash-folder "/Trash"
+        mu4e-refile-folder "/Archive"
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-update-interval nil
+        mu4e-compose-signature-auto-include nil
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t)
+
+  ;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/keyb/INBOX"   . ?g)
+          ("/alan/INBOX" . ?c)))
+
+  ;;; Bookmarks
+  (setq mu4e-bookmarks
+        `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+          ("date:today..now" "Today's messages" ?t)
+          ("date:7d..now" "Last 7 days" ?w)
+          ("mime:image/*" "Messages with images" ?p)
+          (,(mapconcat 'identity
+                       (mapcar
+                        (lambda (maildir)
+                          (concat "maildir:" (car maildir)))
+                        mu4e-maildir-shortcuts) " OR ")
+           "All inboxes" ?i)))
+
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -312,12 +370,106 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   ["#34434b" "#ff5252" "#69f0ae" "#ffd740" "#40c4ff" "#ff4081" "#64fcda" "#ffffff"])
+ '(ansi-term-color-vector
+   [term term-color-black term-color-red term-color-green term-color-yellow term-color-blue term-color-magenta term-color-cyan term-color-white] t)
+ '(compilation-message-face (quote default))
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#839496")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
+ '(custom-safe-themes
+   (quote
+    ("e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "5dd9de189039b8a13da5472766d14ffac3043377c81d3bde87bcdd2480e04512" default)))
+ '(fci-rule-character-color "#d9d9d9")
+ '(fci-rule-color "#263238" t)
+ '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
+ '(highlight-symbol-colors
+   (--map
+    (solarized-color-blend it "#002b36" 0.25)
+    (quote
+     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ '(highlight-symbol-foreground-color "#93a1a1")
+ '(highlight-tail-colors
+   (quote
+    (("#073642" . 0)
+     ("#546E00" . 20)
+     ("#00736F" . 30)
+     ("#00629D" . 50)
+     ("#7B6000" . 60)
+     ("#8B2C02" . 70)
+     ("#93115C" . 85)
+     ("#073642" . 100))))
+ '(hl-bg-colors
+   (quote
+    ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
+ '(hl-fg-colors
+   (quote
+    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(hl-sexp-background-color "#1c1f26")
+ '(magit-diff-use-overlays nil)
  '(magit-push-arguments nil)
- '(paradox-github-token t))
+ '(nrepl-message-colors
+   (quote
+    ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(paradox-github-token t)
+ '(pos-tip-background-color "#073642")
+ '(pos-tip-foreground-color "#93a1a1")
+ '(powerline-default-separator (quote zigzag))
+ '(powerline-height 20)
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ '(term-default-bg-color "")
+ '(term-default-fg-color "#839496")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#dc322f")
+     (40 . "#c85d17")
+     (60 . "#be730b")
+     (80 . "#b58900")
+     (100 . "#a58e00")
+     (120 . "#9d9100")
+     (140 . "#959300")
+     (160 . "#8d9600")
+     (180 . "#859900")
+     (200 . "#669b32")
+     (220 . "#579d4c")
+     (240 . "#489e65")
+     (260 . "#399f7e")
+     (280 . "#2aa198")
+     (300 . "#2898af")
+     (320 . "#2793ba")
+     (340 . "#268fc6")
+     (360 . "#268bd2"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83")))
+ '(xterm-color-names
+   ["#073642" "#ff5252" "#69f0ae" "#ffd740" "#40c4ff" "#ff4081" "#64fcda" "#ffffff"])
+ '(xterm-color-names-bright
+   ["#b0bec5" "#ff8a80" "#b9f6ca" "#ffe57f" "#80d8ff" "#ff80ab" "#a7fdeb" "#ffffff"])
+ '(xterm-mouse-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(custom-comment ((t (:background "dim gray" :slant italic))))
+ '(custom-comment-tag ((t (:foreground "gray80" :slant italic))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#b0bec5" :slant italic))))
+ '(font-lock-comment-face ((t (:foreground "#b0bec5" :slant italic))))
+ '(powerline-active1 ((t (:inherit mode-line :background "gray22" :foreground "light gray"))))
+ '(term-color-black ((t (:background "#546e7a" :foreground "#546e7a"))))
+ '(term-color-blue ((t (:background "#40c4ff" :foreground "#40c4ff"))))
+ '(term-color-cyan ((t (:background "#64fcda" :foreground "#64fcda"))))
+ '(term-color-green ((t (:background "#69f0ae" :foreground "#69f0ae"))))
+ '(term-color-magenta ((t (:background "#b39ddb" :foreground "#b39ddb"))))
+ '(term-color-red ((t (:background "#ff5252" :foreground "#ff5252"))))
+ '(term-color-white ((t (:background "white smoke" :foreground "white smoke"))))
+ '(term-color-yellow ((t (:background "#ffd740" :foreground "#ffd740")))))

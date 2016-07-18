@@ -190,9 +190,9 @@ autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
-hi CursorLine term=none cterm=none ctermbg=black 
-hi CursorColumn term=none cterm=none ctermbg=black
-hi ColorColumn term=none cterm=none ctermbg=black
+hi CursorLine term=none cterm=none ctermbg=238
+hi CursorColumn term=none cterm=none ctermbg=238
+hi ColorColumn term=none cterm=none ctermbg=238
 
 highlight Comment cterm=italic
 highlight Comment ctermfg=gray

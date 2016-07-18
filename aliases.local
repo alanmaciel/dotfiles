@@ -78,3 +78,6 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 # tmuxinator
 alias mux="tmuxinator"
+
+#terminal italic so it can show italics in tmux
+alias ssh="TERM=xterm-256color ssh"

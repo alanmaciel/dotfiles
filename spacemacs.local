@@ -467,7 +467,7 @@ layers configuration. You are free to put any user code."
  '(powerline-active1 ((t (:inherit mode-line :background "gray22" :foreground "light gray"))))
  '(term-color-black ((t (:background "#546e7a" :foreground "#546e7a"))))
  '(term-color-blue ((t (:background "#40c4ff" :foreground "#40c4ff"))))
- '(term-color-cyan ((t (:background "#64fcda" :foreground "#64fcda"))))
+ '(term-color-cyan ((t (:background "deep sky blue" :foreground "deep sky blue"))))
  '(term-color-green ((t (:background "#69f0ae" :foreground "#69f0ae"))))
  '(term-color-magenta ((t (:background "#b39ddb" :foreground "#b39ddb"))))
  '(term-color-red ((t (:background "#ff5252" :foreground "#ff5252"))))

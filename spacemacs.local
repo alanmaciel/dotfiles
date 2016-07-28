@@ -42,7 +42,7 @@ values."
      spotify
      syntax-checking
      themes-megapack
-     theming-modifications
+     ;; theming-modifications
      ;; == COMPLETION ====
      ;; == CONFIGURATION FILES ====
      ;; == E-MAIL ====
@@ -86,7 +86,9 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
 
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+     ox-twbs
+   )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -109,6 +111,8 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
+   ;;
+   ;;
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
@@ -307,29 +311,34 @@ layers configuration. You are free to put any user code."
   (setq-default dotspacemacs-configuration-layers '(
      (osx :variables osx-use-option-as-meta nil)))
   (setq-default mac-right-option-modifier nil)
+  ;; line length
+  ;; (setq-default fill-column 80)
   (setq mac-system-move-file-to-trash-use-finder nil)
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 2)
   (setq-default c-basic-offset 2)
   (setq indent-line-function 'insert-tab)
-  (setq-default dotspacemacs-configuration-layers
-                '((mu4e :variables
-                        mu4e-installation-path "/usr/share/emacs/site-lisp")))
+  (setq-default dotspacemacs-configuration-layers '(
+    (org :variables
+         org-enable-github-support t
+         org-enable-bootstrap-support t)
+    (mu4e :variables
+          mu4e-installation-path "/usr/share/emacs/site-lisp")))
   (setq mu4e-account-alist
-        '(("keybcowb@gmail"
-           ;; Under each account, set the account-specific variables you want.
-           (mu4e-sent-messages-behavior delete)
-           (mu4e-sent-folder "/keyb/.Sent")
-           (mu4e-drafts-folder "/keyb/.Drafts")
-           (user-mail-address "keybcowb@gmail.com")
-           (user-full-name "Keyboard Cowboy"))
-          ("alan.maciel.salcedo@gmail"
+        '(("alan.maciel.salcedo@gmail"
            ;; Under each account, set the account-specific variables you want.
            (mu4e-sent-messages-behavior delete)
            (mu4e-sent-folder "/alan/.Sent")
            (mu4e-drafts-folder "/alan/.Drafts")
            (user-mail-address "alan.maciel.salcedo@gmail.com")
            (user-full-name "Alan M."))
+          ("keybcowb@gmail"
+           ;; Under each account, set the account-specific variables you want.
+           (mu4e-sent-messages-behavior delete)
+           (mu4e-sent-folder "/keyb/.Sent")
+           (mu4e-drafts-folder "/keyb/.Drafts")
+           (user-mail-address "keybcowb@gmail.com")
+           (user-full-name "Keyboard Cowboy"))
           ))
   (mu4e/mail-account-reset)
 
@@ -361,6 +370,14 @@ layers configuration. You are free to put any user code."
                         mu4e-maildir-shortcuts) " OR ")
            "All inboxes" ?i)))
 
+  ;; fill column indicator
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda ()
+      (if (and
+           (not (string-match "^\*.*\*$" (buffer-name)))
+           (not (eq major-mode 'dired-mode)))
+          (fci-mode 1))))
+  (global-fci-mode 1)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -384,8 +401,8 @@ layers configuration. You are free to put any user code."
  '(custom-safe-themes
    (quote
     ("e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "5dd9de189039b8a13da5472766d14ffac3043377c81d3bde87bcdd2480e04512" default)))
- '(fci-rule-character-color "#d9d9d9")
- '(fci-rule-color "#263238" t)
+ '(fci-always-use-textual-rule nil)
+ '(fci-rule-color "#263238")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
  '(highlight-symbol-colors
    (--map
@@ -421,7 +438,7 @@ layers configuration. You are free to put any user code."
  '(powerline-default-separator (quote zigzag))
  '(powerline-height 20)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
- '(term-default-bg-color "")
+ '(term-default-bg-color nil)
  '(term-default-fg-color "#839496")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

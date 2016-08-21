@@ -35,7 +35,7 @@ values."
      better-defaults
      colors
      finance
-     jabber
+     ;;jabber
      org
      osx
      shell
@@ -74,8 +74,8 @@ values."
      ;;command-log
      ;;dash
      ;;evernote
-     ranger
-     tmux
+     ;;ranger
+     ;;tmux
      ;;wakatime
      ;; == VIM ====
      ;;vim-powerline
@@ -153,7 +153,8 @@ values."
    ;;                       monokai
    ;;                       zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
-   dotspacemacs-themes '(railscasts
+   dotspacemacs-themes '(material
+                         railscasts
                          twilight-bright
                          spacemacs-light)
                          ;;molokai
@@ -269,7 +270,7 @@ values."
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
    ;; dotspacemacs-line-numbers nil
-   dotspacemacs-line-numbers 'prog-mode
+   dotspacemacs-line-numbers t
    ;; dotspacemacs-line-numbers 'relative
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
@@ -307,6 +308,7 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (setq max-specpdl-size 64000)
   (global-hl-line-mode -1) ; Disable current line highlight
   (setq-default dotspacemacs-configuration-layers '(
      (osx :variables osx-use-option-as-meta nil)))
@@ -475,8 +477,12 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-tooltip ((t (:background "#37474f" :foreground "lightyellow" :weight bold))))
+ '(company-tooltip-annotation ((t (:background "#78909c" :foreground "black" :weight normal))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :background "lightyellow" :foreground "black" :underline nil :weight bold))))
+ '(company-tooltip-mouse ((t (:inherit highlight :background "#78909c" :foreground "white"))))
+ '(company-tooltip-selection ((t (:background "lightyellow" :foreground "black" :weight bold))))
  '(custom-comment ((t (:background "dim gray" :slant italic))))
  '(custom-comment-tag ((t (:foreground "gray80" :slant italic))))
  '(font-lock-comment-delimiter-face ((t (:foreground "#b0bec5" :slant italic))))

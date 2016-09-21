@@ -395,14 +395,17 @@ layers configuration. You are free to put any user code."
    ["#34434b" "#ff5252" "#69f0ae" "#ffd740" "#40c4ff" "#ff4081" "#64fcda" "#ffffff"])
  '(ansi-term-color-vector
    [term term-color-black term-color-red term-color-green term-color-yellow term-color-blue term-color-magenta term-color-cyan term-color-white] t)
+ '(clean-aindent-mode t)
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
+ '(custom-buffer-indent 2)
  '(custom-safe-themes
    (quote
     ("e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "5dd9de189039b8a13da5472766d14ffac3043377c81d3bde87bcdd2480e04512" default)))
+ '(emmet-indentation 2)
  '(fci-always-use-textual-rule nil)
  '(fci-rule-color "#263238")
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
@@ -429,8 +432,11 @@ layers configuration. You are free to put any user code."
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
  '(hl-sexp-background-color "#1c1f26")
+ '(indent-tabs-mode nil)
  '(magit-diff-use-overlays nil)
  '(magit-push-arguments nil)
+ '(mail-indentation-spaces 2)
+ '(neo-auto-indent-point t)
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
@@ -440,6 +446,9 @@ layers configuration. You are free to put any user code."
  '(powerline-default-separator (quote zigzag))
  '(powerline-height 20)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ '(smie-indent-basic 2)
+ '(standard-indent 2)
+ '(tab-always-indent (quote complete))
  '(term-default-bg-color nil)
  '(term-default-fg-color "#839496")
  '(vc-annotate-background nil)
@@ -464,6 +473,10 @@ layers configuration. You are free to put any user code."
      (340 . "#268fc6")
      (360 . "#268bd2"))))
  '(vc-annotate-very-old-color nil)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2)
+ '(web-mode-sql-indent-offset 2)
  '(weechat-color-list
    (quote
     (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83")))

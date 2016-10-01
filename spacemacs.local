@@ -405,6 +405,13 @@ layers configuration. You are free to put any user code."
  '(custom-safe-themes
    (quote
     ("e56ee322c8907feab796a1fb808ceadaab5caba5494a50ee83a13091d5b1a10c" "5dd9de189039b8a13da5472766d14ffac3043377c81d3bde87bcdd2480e04512" default)))
+ '(elm-indent-after-keywords
+   (quote
+    (("of" 2)
+     ("in" 2 0)
+     ("{" 2)
+     "if" "then" "else" "let")))
+ '(elm-indent-offset 2)
  '(emmet-indentation 2)
  '(fci-always-use-textual-rule nil)
  '(fci-rule-color "#263238")
@@ -436,7 +443,7 @@ layers configuration. You are free to put any user code."
  '(magit-diff-use-overlays nil)
  '(magit-push-arguments nil)
  '(mail-indentation-spaces 2)
- '(neo-auto-indent-point t)
+ '(neo-auto-indent-point t t)
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))

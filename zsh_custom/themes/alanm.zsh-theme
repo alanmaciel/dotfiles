@@ -246,5 +246,5 @@ build_right_prompt() {
   prompt_rvm
 }
 
-RPROMPT='$(build_right_prompt)'
-PROMPT='%{%f%b%k%}$(build_left_prompt) '
+# RPROMPT='$(build_right_prompt)'
+# PROMPT='%{%f%b%k%}$(build_left_prompt) '

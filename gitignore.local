@@ -11,3 +11,7 @@ tmp/**/*
 !tmp/cache/.keep
 *.un~
 .idea/
+.#*
+.#*.*
+dev.ex
+./config/dev.exs

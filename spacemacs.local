@@ -27,7 +27,7 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.mycontribs/")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
@@ -172,14 +172,13 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(atom-one-dark
-                         atom-dark
+   dotspacemacs-themes '(spacedust
                          railscasts
-                         ujelly
+                         junio
+                         atom-one-dark
+                         atom-dark
                          dracula
                          elixify
-                         elixify-light
-                         codeschool
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -355,6 +354,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq powerline-default-separator 'slant)
   (setq max-specpdl-size 64000)
+  (setq neo-theme(quote icons))
   ;; (global-hl-line-mode -1) ; Disable current line highlight
   (setq-default dotspacemacs-configuration-layers '(
     (osx :variables osx-use-option-as-meta nil)))
@@ -375,10 +375,24 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(neo-theme (quote icons)))
+ '(custom-safe-themes
+   (quote
+    ("756ec68798410a2e705dd719c7328af9ecbb782c94130d489b6b3109841833eb" "227edf860687e6dfd079dc5c629cbfb5c37d0b42a3441f5c50873ba11ec8dfd2" "47aa6e82734866b2915781c6e1d9517bd897d45fe8aec360dd4b6294fec73068" "9f3181dc1fabe5d58bbbda8c48ef7ece59b01bed606cfb868dd147e8b36af97c" "945fe66fbc30a7cbe0ed3e970195a7ee79ee34f49a86bc96d02662ab449b8134" "ad1c2abad40e11d22156fe3987fd9b74b9e1c822264a07dacb24e0b3133aaed1" "f5ad3af69f2b6b7c547208b8708d4fa7928b5697ca0845633d1d67c2d145952a" default)))
+ '(evil-want-Y-yank-to-eol nil)
+ '(global-evil-search-highlight-persist t)
+ '(helm-fuzzy-matching-highlight-fn (quote helm-flx-fuzzy-highlight-match))
+ '(neo-theme (quote icons) t)
+ '(sp-highlight-pair-overlay nil)
+ '(sp-highlight-wrap-overlay nil)
+ '(sp-highlight-wrap-tag-overlay nil)
+ '(volatile-highlights-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#5C6370" :slant italic)))))
+ '(font-lock-comment-face ((t (:foreground "#5C6370" :slant italic))))
+ '(highlight ((t (:background "#273b47"))))
+ '(neo-vc-unlocked-changes-face ((t (:background "dodger blue" :foreground "tomato"))))
+ '(term-color-blue ((t (:background "MediumPurple1" :foreground "MediumPurple1"))))
+ '(term-color-magenta ((t (:background "hot pink" :foreground "hot pink")))))

@@ -55,7 +55,7 @@ values."
      shell
      spotify
      syntax-checking
-     themes-megapack
+     ;; themes-megapack
      ;; theming-modifications
      ;; == COMPLETION ====
      ;; == CONFIGURATION FILES ====
@@ -175,7 +175,6 @@ values."
    dotspacemacs-themes '(atom-one-dark
                          atom-dark
                          dracula
-                         elixify
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -359,11 +358,6 @@ you should place your code here."
   ;; line length
   ;; (setq-default fill-column 80)
   (setq-default tab-width 2)
-  (setq-default dotspacemacs-configuration-layers '(
-    (org :variables
-         org-enable-github-support t
-         org-enable-bootstrap-support t)
-    ))
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -394,4 +388,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#181c26" :foreground "#ABB2BF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Operator Mono"))))
+ '(font-lock-comment-face ((t (:foreground "#5C6370" :slant italic))))
  '(neo-vc-unlocked-changes-face ((t (:background "dodger blue" :foreground "tomato")))))

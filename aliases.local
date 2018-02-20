@@ -85,3 +85,6 @@ alias ssh="TERM=xterm-256color ssh"
 # Launch GUI Emacs (Spacemacs) from command line in OSX
 alias spacemacs='open -a /Applications/Emacs.app $1'
 alias sm='open -a /Applications/Emacs.app $1'
+
+# bundle exec
+alias be="bundle exec"

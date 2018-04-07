@@ -173,8 +173,6 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(atom-one-dark
-                         atom-dark
-                         dracula
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -366,8 +364,8 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+ '(clean-aindent-mode t)
+ '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
     ("756ec68798410a2e705dd719c7328af9ecbb782c94130d489b6b3109841833eb" "227edf860687e6dfd079dc5c629cbfb5c37d0b42a3441f5c50873ba11ec8dfd2" "47aa6e82734866b2915781c6e1d9517bd897d45fe8aec360dd4b6294fec73068" "9f3181dc1fabe5d58bbbda8c48ef7ece59b01bed606cfb868dd147e8b36af97c" "945fe66fbc30a7cbe0ed3e970195a7ee79ee34f49a86bc96d02662ab449b8134" "ad1c2abad40e11d22156fe3987fd9b74b9e1c822264a07dacb24e0b3133aaed1" "f5ad3af69f2b6b7c547208b8708d4fa7928b5697ca0845633d1d67c2d145952a" default)))
@@ -378,21 +376,32 @@ you should place your code here."
      ("{" 2)
      "if" "then" "else" "let")))
  '(elm-indent-offset 2)
+ '(emmet-indentation 2)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-pos-tip-timeout 20)
  '(global-evil-search-highlight-persist t)
  '(helm-fuzzy-matching-highlight-fn (quote helm-flx-fuzzy-highlight-match))
- '(neo-theme (quote icons))
+ '(indent-tabs-mode nil)
+ '(neo-auto-indent-point t t)
+ '(neo-theme (quote icons) t)
  '(ns-use-srgb-colorspace nil)
+ '(package-selected-packages
+   (quote
+    (zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme which-key web-mode use-package spaceline powerline rainbow-mode projectile-rails orgit org-present org-mime org-download ledger-mode js2-refactor multiple-cursors insert-shebang htmlize hl-todo helm-projectile helm-make gitconfig-mode gitattributes-mode git-timemachine fish-mode exec-path-from-shell evil-matchit evil-magit erlang dumb-jump company-web color-identifiers-mode auto-compile packed alchemist adaptive-wrap ace-link smartparens evil flycheck yasnippet company gitignore-mode helm helm-core avy gh magit magit-popup git-commit ghub with-editor alert projectile org-plus-contrib inf-ruby js2-mode s dash yaml-mode xterm-color ws-butler winum web-completion-data web-beautify volatile-highlights vi-tilde-fringe uuidgen unfill undo-tree toc-org tagedit sql-indent spotify smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-identifiers rainbow-delimiters pug-mode popwin persp-mode pbcopy paradox osx-trash osx-dictionary org-projectile org-pomodoro org-bullets open-junk-file ob-elixir neotree mwim multi-term move-text mmm-mode minitest marshal markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum logito log4e livid-mode linum-relative link-hint less-css-mode launchctl json-mode js-doc inflections indent-guide hungry-delete highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-spotify-plus helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag goto-chg google-translate golden-ratio gnuplot gntp github-search github-clone github-browse-file git-messenger git-link gist gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-ledger flycheck-elm flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav diminish csv-mode company-tern company-statistics company-shell company-emoji column-enforce-mode coffee-mode clean-aindent-mode chruby bundler bind-key auto-yasnippet auto-highlight-symbol atom-one-dark-theme async all-the-icons aggressive-indent adoc-mode ace-window ace-jump-helm-line ac-ispell)))
+ '(smie-indent-basic 2)
  '(sp-highlight-pair-overlay nil)
  '(sp-highlight-wrap-overlay nil)
  '(sp-highlight-wrap-tag-overlay nil)
- '(volatile-highlights-mode t))
+ '(standard-indent 2)
+ '(tab-always-indent (quote complete))
+ '(volatile-highlights-mode t)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2)
+ '(web-mode-sql-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#181c26" :foreground "#ABB2BF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Operator Mono"))))
- '(font-lock-comment-face ((t (:foreground "#5C6370" :slant italic))))
- '(neo-vc-unlocked-changes-face ((t (:background "dodger blue" :foreground "tomato")))))
+ )

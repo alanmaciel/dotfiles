@@ -55,7 +55,7 @@ values."
      shell
      spotify
      syntax-checking
-     ;; themes-megapack
+     themes-megapack
      ;; theming-modifications
      ;; == COMPLETION ====
      ;; == CONFIGURATION FILES ====
@@ -172,7 +172,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(atom-one-dark
+   dotspacemacs-themes '(exotica
+                         atom-one-dark
                          spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -382,8 +383,8 @@ you should place your code here."
  '(global-evil-search-highlight-persist t)
  '(helm-fuzzy-matching-highlight-fn (quote helm-flx-fuzzy-highlight-match))
  '(indent-tabs-mode nil)
- '(neo-auto-indent-point t t)
- '(neo-theme (quote icons) t)
+ '(neo-auto-indent-point t)
+ '(neo-theme (quote icons))
  '(ns-use-srgb-colorspace nil)
  '(package-selected-packages
    (quote
@@ -398,10 +399,13 @@ you should place your code here."
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-markup-indent-offset 2)
- '(web-mode-sql-indent-offset 2))
+ '(web-mode-sql-indent-offset 2)
+ '(xterm-mouse-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(custom-comment ((t (:background "dim gray"))))
+ '(font-lock-comment-face ((t (:foreground "#646F84" :slant italic))))
+ '(term-color-blue ((t (:background "slate blue" :foreground "slate blue")))))

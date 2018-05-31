@@ -24,7 +24,8 @@ values."
    ;; If non-nil then Spacemacs will ask for confirmation before installing
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
-   ;; If non-nil layers with lazy install support are lazy installed.
+   ;; If non-ni;;'(font-lock-comment-face ((t (:slant italic))))))
+   ;; layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    ;; dotspacemacs-configuration-layer-path '("~/.mycontribs/")
@@ -70,17 +71,14 @@ values."
      ;; == IRC ====
      ;; == KEYBOARD LAYOUTS ====
      ;; == PROGRAMMING AND MARKUP LANGUAGES ====
-     ;; asciidoc
+     asciidoc
      elixir
      elm
      erlang
      html
      javascript
      markdown
-     (ruby :variables
-           ruby-test-runner 'rspec
-           ruby-enable-enh-ruby-mode t
-           ruby-version-manager 'rvm)
+     ruby
      shell-scripts
      sql
      yaml
@@ -176,15 +174,17 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(atom-one-dark
+                         falcon
                          nord
+                         nordless
+                         elixify
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Operator Mono"
-                               ;; :size 14
-                               :size 15
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
@@ -342,6 +342,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -353,8 +354,8 @@ you should place your code here."
   (setq max-specpdl-size 64000)
   (setq neo-theme(quote icons))
   ;; (global-hl-line-mode -1) ; Disable current line highlight
-  (setq-default dotspacemacs-configuration-layers
-    '((osx :variables osx-use-option-as-meta nil)))
+  (setq-default dotspacemacs-configuration-layers '(
+    (osx :variables osx-use-option-as-meta nil)))
   (setq-default mac-right-option-modifier nil)
   ;; line length
   ;; (setq-default fill-column 80)
@@ -369,11 +370,10 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#d2ceda" "#f2241f" "#67b11d" "#b1951d" "#3a81c3" "#a31db1" "#21b8c7" "#655370"])
- '(clean-aindent-mode t)
  '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
-    ("d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "0809485f08aa8c9b0100033eaa2d04f6a7410c2afcdbd76ce368a7a8e5744ffb" "7527f3308a83721f9b6d50a36698baaedc79ded9f6d5bd4e9a28a22ab13b3cb1" "756ec68798410a2e705dd719c7328af9ecbb782c94130d489b6b3109841833eb" "227edf860687e6dfd079dc5c629cbfb5c37d0b42a3441f5c50873ba11ec8dfd2" "47aa6e82734866b2915781c6e1d9517bd897d45fe8aec360dd4b6294fec73068" "9f3181dc1fabe5d58bbbda8c48ef7ece59b01bed606cfb868dd147e8b36af97c" "945fe66fbc30a7cbe0ed3e970195a7ee79ee34f49a86bc96d02662ab449b8134" "ad1c2abad40e11d22156fe3987fd9b74b9e1c822264a07dacb24e0b3133aaed1" "f5ad3af69f2b6b7c547208b8708d4fa7928b5697ca0845633d1d67c2d145952a" default)))
+    ("0e33022384e4db1374827f51e3d9e9a2d56282c2e3568c22f1c12ad80e20cf0c" "6dd2b995238b4943431af56c5c9c0c825258c2de87b6c936ee88d6bb1e577cb9" "3de3f36a398d2c8a4796360bfce1fa515292e9f76b655bb9a377289a6a80a132" "3be1f5387122b935a26e02795196bc90860c57a62940f768f138b02383d9a257" "d9850d120be9d94dd7ae69053630e89af8767c36b131a3aa7b06f14007a24656" "b3bcf1b12ef2a7606c7697d71b934ca0bdd495d52f901e73ce008c4c9825a3aa" "0809485f08aa8c9b0100033eaa2d04f6a7410c2afcdbd76ce368a7a8e5744ffb" default)))
  '(elm-indent-after-keywords
    (quote
     (("of" 2)
@@ -383,31 +383,21 @@ you should place your code here."
  '(elm-indent-offset 2)
  '(emmet-indentation 2)
  '(evil-want-Y-yank-to-eol nil)
- '(flycheck-pos-tip-timeout 20)
- '(global-evil-search-highlight-persist t)
- '(helm-fuzzy-matching-highlight-fn (quote helm-flx-fuzzy-highlight-match))
- '(indent-tabs-mode nil)
- '(neo-auto-indent-point t t)
- '(neo-theme (quote icons) t)
- '(ns-use-srgb-colorspace nil)
+ '(fci-rule-color "#4C566A" t)
  '(package-selected-packages
    (quote
-    (enh-ruby-mode yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit sql-indent spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails popwin persp-mode pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir nord-theme neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc insert-shebang indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-elm flycheck-credo flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erlang emmet-mode elm-mode elisp-slime-nav dumb-jump diminish csv-mode company-web company-tern company-statistics company-shell column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-compile atom-one-dark-theme all-the-icons alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (dark-krystal-theme atom-one-dark-theme helm-core dash snazzy-theme helm yaml-mode xterm-color web-mode web-beautify unfill tagedit sql-indent spotify smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder rbenv rainbow-mode rainbow-identifiers pug-mode projectile-rails rake inflections pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download ob-elixir mwim multi-term mmm-mode minitest markdown-toc markdown-mode magit-gitflow magit-gh-pulls livid-mode skewer-mode simple-httpd less-css-mode ledger-mode launchctl json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc insert-shebang htmlize helm-spotify-plus multi helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flycheck-pos-tip pos-tip flycheck-mix flycheck-ledger flycheck-elm flycheck-credo flycheck fish-mode feature-mode evil-magit magit magit-popup git-commit ghub with-editor eshell-z eshell-prompt-extras esh-help erlang emoji-cheat-sheet-plus emmet-mode elm-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-emoji color-identifiers-mode coffee-mode chruby bundler inf-ruby auto-yasnippet yasnippet all-the-icons memoize alchemist company elixir-mode adoc-mode markup-faces ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file nord-theme neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(smie-indent-basic 2)
- '(sp-highlight-pair-overlay nil)
- '(sp-highlight-wrap-overlay nil)
- '(sp-highlight-wrap-tag-overlay nil)
  '(standard-indent 2)
- '(tab-always-indent (quote complete))
- '(volatile-highlights-mode t)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-markup-indent-offset 2)
- '(web-mode-sql-indent-offset 2))
+ '(web-mode-sql-indent-offset 2)
+ '(xterm-mouse-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Operator Mono" :foundry "nil" :slant normal :weight normal :height 140 :width normal))))
- '(font-lock-comment-face ((t (:foreground "#4c566a" :slant italic)))))
+ '(font-lock-comment-face ((t (:slant italic)))))

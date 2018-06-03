@@ -51,7 +51,8 @@ values."
      ;; finance
      ;;jabber
      org
-     osx
+     (osx :variables
+          osx-use-option-as-meta nil)
      shell
      ;; spotify
      syntax-checking
@@ -183,8 +184,8 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Operator Mono"
-                               ;; :size 14
-                               :size 15
+                               :size 14
+                               ;; :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
@@ -353,8 +354,6 @@ you should place your code here."
   (setq max-specpdl-size 64000)
   (setq neo-theme(quote icons))
   ;; (global-hl-line-mode -1) ; Disable current line highlight
-  (setq-default dotspacemacs-configuration-layers
-    '((osx :variables osx-use-option-as-meta nil)))
   (setq-default mac-right-option-modifier nil)
   ;; line length
   ;; (setq-default fill-column 80)

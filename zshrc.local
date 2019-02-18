@@ -10,6 +10,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # according to triumverate http://www.drbunsen.org/text-triumvirate.html 
 
 export EDITOR="vim"
+
 bindkey -v 
 
 # Notes from the terminal based on:
@@ -24,10 +25,17 @@ nls() {
 
 autoload -U promptinit; promptinit
 prompt pure
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin
+
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.6/bin
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh.
 
 # Using asdf Extendable version manager - https://github.com/asdf-vm/asdf
 $HOME/.asdf/asdf.sh
+
+# autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# # Added for Rbenv
+# eval "$(rbenv init -)"

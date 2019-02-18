@@ -1,4 +1,4 @@
-let g:airline_theme='powerlineish'
+"let g:airline_theme='powerlineish'
 "let g:tmuxline_powerline_separators = 1
 "let g:airline#extensions#tmuxline#enabled = 1
 "let g:tmuxline_preset = 'nightly_fox'

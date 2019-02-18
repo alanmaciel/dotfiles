@@ -46,9 +46,10 @@ alias -- -="cd -"
 # Shortcuts
 alias d="cd ~/Dropbox"
 alias p="cd ~/Projects"
+alias instafit="cd ~/Projects/InstaFit"
 alias g="git"
 alias h="history"
-alias j="jobs"
+# alias j="jobs"
 alias v="vim"
 alias m="mate ."
 alias s="subl ."
@@ -88,3 +89,17 @@ alias sm='open -a /Applications/Emacs.app $1'
 
 # bundle exec
 alias be="bundle exec"
+
+# aliases accord to deep dive ruby
+alias gis='git status'
+
+alias gis='git status ‐sb'
+alias gil='git log ‐‐pretty=format:"%C(auto)%h ‐ %an, %ar %n  %s %n"'
+alias gic='git checkout'
+alias gim='git commit ‐a ‐m'
+alias gas='git add .'
+alias gir='git remote ‐v'
+
+alias rs='rails s'
+alias rc='rails c'
+

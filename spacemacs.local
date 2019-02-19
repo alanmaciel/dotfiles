@@ -43,7 +43,7 @@ values."
      better-defaults
      colors
      ;; finance
-     ;;jabber
+     ;; jabber
      org
      ;; (osx :variables osx-use-option-as-meta nil)
      osx
@@ -60,17 +60,12 @@ values."
                       auto-completion-enable-snippets-in-popup t)
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil)
-     ;;; Directory Local Variables
-     ;;; For more information see (info "(emacs) Directory Variables")
-
-     ((elixir-mode
-       (elixir-enable-compilation-checking . t)))
      ;; == CONFIGURATION FILES ====
      ;; == E-MAIL ====
      ;;gnus
      ;;mu4e
      ;; == FRAMEWORKS ====
-     ;; react
+     react
      ruby-on-rails
      ;; == FUN ====
      emoji
@@ -79,6 +74,10 @@ values."
      ;; == PROGRAMMING AND MARKUP LANGUAGES ====
      ;; asciidoc
      elixir
+     ;;; Directory Local Variables
+     ;;; For more information see (info "(emacs) Directory Variables")
+     ((elixir-mode
+       (elixir-enable-compilation-checking . t)))
      elm
      erlang
      html
@@ -172,8 +171,8 @@ values."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 3))
+   dotspacemacs-startup-lists '((recents . 20)
+                                (projects . 10))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -183,15 +182,14 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(atom-one-dark
                          nord
-                         spacemacs-light
-                         spacedust)
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Operator Mono"
-                               :size 15
-                               ;; :size 14
+                               ;; :size 15
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
@@ -247,7 +245,7 @@ values."
    ;; (default 'cache)
    dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
-   dotspacemacs-max-rollback-slots 5
+   dotspacemacs-max-rollback-slots 15
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
@@ -378,6 +376,11 @@ you should place your code here."
     (evil-local-set-key 'insert (kbd "<right>") 'mo/term-send-right)
     (evil-local-set-key 'insert (kbd "<left>") 'mo/term-send-left)
   )
+
+  ;; Natural title bar
+  (setq frame-title-format nil)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . 'dark))
 
   (add-hook 'term-mode-hook 'mo/setup-term-send-arrow-keys)
 )

@@ -9,6 +9,7 @@ Thoughtbot explain this in their [Playbook](http://playbook.thoughtbot.com/#lapt
 * Clone and install [oh my zsh](https://github.com/robbyrussell/oh-my-zsh)
 * Clone and install [vim airline](https://github.com/bling/vim-airline#tmuxline)
 * Clone and install [tmuxline](https://github.com/edkolev/tmuxline.vim)
+* Install [pure prompt](https://github.com/sindresorhus/pure)
 * Clone my personal [dotfiles](https://github.com/alanmaciel/dotfiles) and run [~/dotfiles-local/install.sh](https://github.com/alanmaciel/dotfiles/blob/master/install.sh)
 
 ## Ingredients

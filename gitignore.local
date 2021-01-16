@@ -15,3 +15,10 @@ tmp/**/*
 .#*.*
 dev.ex
 ./config/dev.exs
+.tool-versions
+.vscode/
+*tool-versions
+log
+tmp
+vendor
+

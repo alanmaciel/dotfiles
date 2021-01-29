@@ -2,7 +2,7 @@
 
 ;; Place your private configuration here
 
-(setq fancy-splash-image "~/dotfiles-local/doom.d/logo.png")
+(setq fancy-splash-image "~/dotfiles-local/doom.d/icon_256x256.png")
 (setq doom-font (font-spec :family "Operator Mono" :size 13))
 (when (eq system-type 'darwin)
   (setq mac-right-option-modifier 'none))

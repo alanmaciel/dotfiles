@@ -147,6 +147,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
        ;;vala              ; GObjective-C
+       (yaml +lsp)
 
        :email
        ;;(mu4e +gmail)       ; WIP

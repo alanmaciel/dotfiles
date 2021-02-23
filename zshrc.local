@@ -29,7 +29,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
-export ASDF_DIR=$(brew --prefix asdf)
+# export ASDF_DIR=$(brew --prefix asdf)
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh.

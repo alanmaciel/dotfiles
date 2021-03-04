@@ -46,11 +46,10 @@ alias -- -="cd -"
 # Shortcuts
 alias d="cd ~/Dropbox"
 alias p="cd ~/Projects"
-alias instafit="cd ~/Projects/InstaFit"
 alias g="git"
 alias h="history"
 # alias j="jobs"
-alias v="vim"
+alias v="$VISUAL"
 alias m="mate ."
 alias s="subl ."
 alias o="open"
@@ -83,9 +82,9 @@ alias mux="tmuxinator"
 #terminal italic so it can show italics in tmux
 alias ssh="TERM=xterm-256color ssh"
 
-# Launch GUI Emacs (Spacemacs) from command line in OSX
-alias spacemacs='open -a /Applications/Emacs.app $1'
-alias sm='open -a /Applications/Emacs.app $1'
+# Launch GUI Emacs (Doom macs) from command line in OSX
+alias e='open -a emacs $1'
+alias doom='open -a emacs $1'
 
 # bundle exec
 alias be="bundle exec"

@@ -10,8 +10,8 @@ export PATH=~/.npm-global/bin:$PATH
 
 # added by alan maciel
 # according to triumverate http://www.drbunsen.org/text-triumvirate.html 
-
-export EDITOR="vim"
+export VISUAL=emacs
+export EDITOR="$VISUAL"
 
 bindkey -v 
 

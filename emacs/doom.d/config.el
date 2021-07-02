@@ -3,7 +3,7 @@
 ;; Place your private configuration here
 (setq user-full-name "Alan Maciel"
       user-mail-address "alan.maciel.salcedo@gmail.com")
-(setq fancy-splash-image "~/dotfiles-local/doom.d/lucky_256x256.png")
+(setq fancy-splash-image "~/dotfiles-local/emacs/doom.d/lucky_256x256.png")
 ;; (setq doom-font (font-spec :family "Operator Mono"
 ;;                            :weight 'Light
 ;;                            ;; :bold nil

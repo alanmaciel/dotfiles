@@ -1,5 +1,0 @@
-echo "Loading .zshenv.local"
-# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin:$HOME/.kerl:$HOME/.mix
-# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.5/bin
-# Path to your oh-my-zsh configuration.
-# ZSH=$HOME/.oh-my-zsh

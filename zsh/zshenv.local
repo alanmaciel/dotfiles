@@ -1,0 +1,2 @@
+echo "Loading .zshenv.local"
+export CUCUMBER_PUBLISH_QUIET=true

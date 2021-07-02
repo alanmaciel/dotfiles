@@ -1,0 +1,32 @@
+echo "Loading .zshrc.local"
+export ZSH_CUSTOM=$HOME/dotfiles-local/zsh/zsh_custom
+export ZSH=$HOME/.oh-my-zsh
+export TERM="xterm-256color"
+export PGHOST=localhost
+export ERL_AFLAGS="-kernel shell_history enabled"
+export VISUAL=emacs
+export EDITOR="$VISUAL"
+export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
+# for apple M1 arm processor: 
+export PATH=/opt/homebrew/bin/:$PATH
+export STARSHIP_CONFIG=~/dotfiles-local/zsh/starship.toml
+source $ZSH/oh-my-zsh.sh
+
+bindkey -v 
+eval "$(starship init zsh)"
+
+ZSH=$HOME/.oh-my-zsh.
+
+# autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Notes from the terminal based on:
+# http://www.pc-freak.net/blog/tip-quick-note-taking-on-gnu-linux-and-freebsd-from-terminal-or-console/
+# Modified by Alan Maciel Modified to use emacs org mode
+n() {
+  emacs ~/Dropbox/docs/Notes/"$*".org
+}
+nls() {
+  ls -c ~/Dropbox/docs/Notes/ | grep "$1"
+}

@@ -25,7 +25,7 @@
 ;; (setq doom-theme 'doom-sourcerer)
 ;; (setq doom-theme 'doom-gruvbox)
 ;; (setq doom-theme 'doom-nord-light)
-(setq doom-theme 'doom-spacegrey)
+;; (setq doom-theme 'doom-spacegrey)
 (setq mode-line-format
       (list
        '(:eval (list (nyan-create)))

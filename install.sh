@@ -48,7 +48,6 @@ read -p "Press enter to continue"
 rm -rf ~/.emacs_themes
 rm -rf ~/.iterm_color_schemes
 rm -rf ~/.zsh_custom
-rm ~/.SpaceVim.d/init.toml
 rm ~/.aliases.local
 rm ~/.doom.d
 rm ~/.gitconfig.local
@@ -74,7 +73,6 @@ ln -nfs ~/dotfiles-local/iterm/iterm_color_schemes ~/.iterm_color_schemes
 ln -nfs ~/dotfiles-local/iterm/xterm-256color-italic.terminfo ~/.xterm-256color-italic.terminfo
 ln -nfs ~/dotfiles-local/tmux/tmux.conf.local ~/.tmux.conf.local
 ln -nfs ~/dotfiles-local/tmux/tmuxinator.zsh ~/.tmuxinator.zsh
-ln -nfs ~/dotfiles-local/vim/spacevim/init.toml ~/.SpaceVim.d/init.toml
 ln -nfs ~/dotfiles-local/zsh/aliases.local ~/.aliases.local
 ln -nfs ~/dotfiles-local/zsh/zsh_custom ~/.zsh_custom
 ln -nfs ~/dotfiles-local/zsh/zshenv.local ~/.zshenv.local
@@ -82,4 +80,9 @@ ln -nfs ~/dotfiles-local/zsh/zshrc.local ~/.zshrc.local
 echo 'Now I will copy some programs to ~/bin'
 read -p "Press enter to continue"
 cp -rf ~/dotfiles-local/bin/* ~/bin/
+echo 'I will install SpaceVim ...'
+read -p "Press enter to continue"
+curl -sLf https://spacevim.org/install.sh | bash
+rm ~/.SpaceVim.d/init.toml
+ln -nfs ~/dotfiles-local/vim/spacevim/init.toml ~/.SpaceVim.d/init.toml
 echo 'Done! Enjoy your new home!'

@@ -59,6 +59,7 @@
        ;;+icons          ; colorful icons for dired-mode
         )
        electric          ; smarter, keyword-based electric-indent
+       undo              ; persistent, smarter undo for your invevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -68,7 +69,7 @@
 
        :tools
        ;;ansible
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces

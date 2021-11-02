@@ -31,3 +31,4 @@ nls() {
 
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/dotfiles-local/zsh/starship.toml
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"

@@ -8,3 +8,4 @@
 (package! nyan-mode)
 (package! feature-mode)
 (package! spacemacs-theme)
+(package! key-chord)

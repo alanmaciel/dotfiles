@@ -36,11 +36,28 @@
 ;; (setq doom-theme 'spacemacs-light)
 ;; (setq doom-theme 'doom-sourcerer)
 ;; (setq doom-theme 'doom-dracula)
-(setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-gruvbox)
 ;; (setq doom-theme 'doom-nord-light)
 ;; (setq doom-theme 'doom-spacegrey)
 ;; (setq doom-theme 'doom-vibrant)
 ;; (setq doom-theme 'doom-solarized-light)
+(defun y/auto-update-theme ()
+  "depending on time use different theme"
+  ;; very early => gruvbox-light, solarized-light, nord-light
+  (let* ((hour (nth 2 (decode-time (current-time))))
+         (theme (cond ((<= 7 hour 8)   'doom-gruvbox-light)
+                      ((= 9 hour)      'doom-solarized-light)
+                      ((<= 10 hour 16) 'doom-nord-light)
+                      ((<= 17 hour 18) 'doom-gruvbox-light)
+                      ((<= 19 hour 22) 'doom-oceanic-next)
+                      (t               'doom-laserwave))))
+    (when (not (equal doom-theme theme))
+      (setq doom-theme theme)
+      (load-theme doom-theme t))
+    ;; run that function again next hour
+    (run-at-time (format "%02d:%02d" (+ hour 1) 0) nil 'y/auto-update-theme)))
+
+(y/auto-update-theme)
 
 (remove-hook 'window-setup-hook #'doom-init-theme-h)
 (add-hook 'after-init-hook #'doom-init-theme-h 'append)

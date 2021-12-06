@@ -84,7 +84,7 @@ alias ssh="TERM=xterm-256color ssh"
 
 # Launch GUI Emacs (Doom macs) from command line in OSX
 alias e='open -a emacs $1'
-alias doom='open -a emacs $1'
+# alias doom='open -a emacs $1'
 
 # bundle exec
 alias be="bundle exec"

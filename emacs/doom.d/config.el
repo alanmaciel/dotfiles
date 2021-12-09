@@ -81,7 +81,7 @@
   ;; very early => gruvbox-light, solarized-light, nord-light
   (let* ((hour (nth 2 (decode-time (current-time))))
          (theme (cond ((<= 7 hour 8)   'doom-gruvbox-light)
-                      ((= 9 hour)      'doom-solarized-light)
+                      ((= 9 hour)      'spacemacs-light)
                       ((<= 10 hour 16) 'doom-nord-light)
                       ((<= 17 hour 18) 'doom-gruvbox-light)
                       ((<= 19 hour 22) 'doom-oceanic-next)

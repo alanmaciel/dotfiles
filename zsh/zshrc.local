@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v 
 
-ZSH=$HOME/.oh-my-zsh.
+ZSH=$HOME/.oh-my-zsh
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -33,3 +33,7 @@ nls() {
 
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=$HOME/dotfiles-local/zsh/starship.toml
+
+# aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
+

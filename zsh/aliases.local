@@ -102,3 +102,5 @@ alias gir='git remote ‐v'
 alias rs='rails s'
 alias rc='rails c'
 
+# Play sound
+alias notify='afplay /System/Library/Sounds/Submarine.aiff -v 10'

@@ -1,3 +1,6 @@
+# Allow longer-running commands to keep executing
+command_timeout = 5000
+
 # Don't print a new line at the start of the prompt
 add_newline = false
 

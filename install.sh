@@ -36,7 +36,7 @@ ln -nfs ~/dotfiles/vimrc .gvimrc
 ln -nfs ~/dotfiles/vimrc .gvimrc
 ln -nfs ~/dotfiles/vimrc .vimrc
 ln -nfs ~/dotfiles/tmux.conf .tmux.conf
-ln -nfs ~/dotfiles/oh-my-zsh .oh-my-zsh
+#ln -nfs ~/dotfiles/oh-my-zsh .oh-my-zsh
 ln -nfs ~/dotfiles/bin bin
 ln -nfs ~/dotfiles/vim .vim
 echo 'Now I will copy some programs to ~/bin'

@@ -16,6 +16,11 @@ full_symbol = "🔋"
 charging_symbol = "⚡️"
 discharging_symbol = "💀"
 
+[env_var]
+variable = "SHELL_ARCH"
+style = "bold yellow"
+format = "[$env_value]($style) "
+
 [aws]
 symbol = " "
 

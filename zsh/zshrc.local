@@ -7,12 +7,14 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export VISUAL=emacs
 #export EDITOR="$VISUAL"
 export EDITOR=$HOME/dotfiles-local/bin/ec
-export PATH=$HOME/dotfiles-local/bin/:/opt/homebrew/opt/node@14/bin/:$PATH
-export PATH=$HOME/.npm-global/bin:$PATH
+export PATH=$HOME/dotfiles-local/bin/:$PATH
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
+export PATH="$PATH:`pwd`/development/flutter/bin"
 # for apple M1 arm processor: 
-export PATH=/opt/homebrew/bin/:$PATH
-source $ZSH/oh-my-zsh.sh
+# export PATH=/opt/homebrew/bin/:$PATH
+export DW_DEV_HOME="$HOME/Development/dealerware"
+export DW_CLI_HOME="$HOME/Development/dealerware/dw-toolbox/dw-cli"
+#source $ZSH/oh-my-zsh.sh
 
 bindkey -v 
 
@@ -33,7 +35,33 @@ nls() {
 
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=$HOME/dotfiles-local/zsh/starship.toml
+export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@13/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@13/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@13/lib/pkgconfig"
+#eval "$(direnv hook zsh)"
 
-# aliases
-[[ -f ~/.aliases.local ]] && source ~/.aliases.local
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
+# M1 and Arm on the same box, different brews:
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin"
+
+if [[ "$(arch)" = "arm64" ]]; then
+    echo "Detected ARM ..." 
+    export PATH="/opt/homebrew/bin:$PATH"
+    export HOMEBREW_PREFIX='/usr/local'
+    export SHELL_ARCH="arm64"
+elif [[ "$(arch)" = "i386" ]]; then
+    echo "Detected x86 ..."
+    export PATH="/usr/local/Homebrew/bin:$PATH"
+    export HOMEBREW_PREFIX='/opt/homebrew'
+    export SHELL_ARCH="x86"
+else
+    echo "Unknown architecture."
+fi
+
+eval $(brew shellenv)
+
+alias intel='arch -x86_64 /bin/zsh'
+
+export PATH="$HOME/.bin:$PATH"

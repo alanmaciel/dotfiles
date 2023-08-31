@@ -104,3 +104,10 @@ alias rc='rails c'
 
 # Play sound
 alias notify='afplay /System/Library/Sounds/Submarine.aiff -v 10'
+
+# rac-api
+alias rac="cd ~/Projects/silvercar/rac-api"
+alias mob="cd ~/Projects/dealerware/mob-api"
+
+# DW CLI
+alias dw='~/Development/dealerware/dw-toolbox/dw-cli/dw.sh '

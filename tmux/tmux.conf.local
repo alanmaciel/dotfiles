@@ -1,39 +1,20 @@
-
-# Use vim keybindings in copy mode
-setw -g mode-keys vi
-set-window-option -g utf8 on
-
-# Setup 'v' to begin selection as in Vim
-bind-key -t vi-copy v begin-selection
-bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
-
-# Update default binding of `Enter` to also use copy-pipe
-unbind -t vi-copy Enter
-bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
-
-# start tmux with a login shell otherwise rvm will complain
-#set -g default-command "$SHELL --login"  
-# # use your normal shell with tmux
-#set -g default-shell $SHELL  
-set-option -g default-command "reattach-to-user-namespace -l zsh"
-set-option -g default-shell /bin/zsh
-
-set -g status on
-set -g status-utf8 on
-
-# Copy mode
+# Use vim keybindings in copy mode (sintaxis tmux >= 2.4)
 setw -g mode-keys vi
 bind ` copy-mode
-#unbind [
 unbind p
 bind p paste-buffer
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-selection
-bind -t vi-copy Escape cancel
-bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
+bind -T copy-mode-vi Enter send -X copy-pipe-and-cancel "pbcopy"
+bind -T copy-mode-vi Escape send -X cancel
+bind y run "tmux save-buffer - | pbcopy"
 
-# TERM=screen-256color
-set -g default-terminal "xterm-256color-italic"
+# Desde tmux 2.6 ya no hace falta reattach-to-user-namespace para pbcopy
+set -g default-shell /bin/zsh
+
+# tmux-256color trae cursiva; RGB habilita truecolor en Ghostty
+set -g default-terminal "tmux-256color"
+set -as terminal-features ",xterm-ghostty:RGB,xterm-256color:RGB"
 set -g history-limit 20000
 # use VI
 set-window-option -g mode-keys vi
@@ -43,10 +24,6 @@ set -g prefix C-a
 unbind C-b
 bind C-a send-prefix
 bind a send-prefix
-
-# enable utf-8 on status bar
-set -g status on
-set -g status-utf8 on
 
 # status refresh interval
 set -g status-interval 2

@@ -1,39 +1,78 @@
-echo "Loading .zshrc.local"
-export ZSH_CUSTOM=$HOME/dotfiles-local/zsh/zsh_custom
-export ZSH=$HOME/.oh-my-zsh
-export TERM="xterm-256color"
+# ~/.zshrc.local — configuración personal de shells interactivos.
+#
+# Cadena de carga en esta máquina:
+#   .zshenv    -> .zshenv.local
+#   .zprofile  -> brew shellenv                    (solo shells de login)
+#   .zshrc     -> ~/.zsh/functions/*
+#              -> ~/.zsh/configs/*.zsh             (color, editor, history, options…)
+#              -> ~/.zsh/configs/post/*.zsh        (compinit, asdf, PATH)
+#              -> ESTE ARCHIVO
+#              -> ~/.aliases -> ~/.aliases.local
+#
+# Los archivos de ~/.zsh/ vienen del repo dotfiles (upstream de thoughtbot).
+# Lo propio va aquí, y lo que se solape se sobrescribe a conciencia.
+
+# ── Entorno ───────────────────────────────────────────────────────────────
 export PGHOST=localhost
-export ERL_AFLAGS="-kernel shell_history enabled"
-export VISUAL=emacs
-#export EDITOR="$VISUAL"
+
+# Editor: wrapper propio sobre emacsclient.
+# Sobrescribe a propósito el vim de ~/.zsh/configs/editor.zsh, que se carga antes.
+# VISUAL tiene prioridad sobre EDITOR (git, crontab…), así que ambos apuntan a ec.
 export EDITOR=$HOME/dotfiles-local/bin/ec
-export PATH=$HOME/dotfiles-local/bin/:/opt/homebrew/opt/node@14/bin/:$PATH
-export PATH=$HOME/.npm-global/bin:$PATH
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/11/bin
-# for apple M1 arm processor: 
-export PATH=/opt/homebrew/bin/:$PATH
-source $ZSH/oh-my-zsh.sh
+export VISUAL=$EDITOR
 
-bindkey -v 
+# TERM se deja en manos de la terminal a propósito. Forzarlo a xterm-256color
+# rompía las capacidades extendidas de Ghostty, que anuncia xterm-ghostty.
+# Para sesiones remotas sin terminfo, el alias `ssh` de .aliases.local lo fija.
 
-ZSH=$HOME/.oh-my-zsh
+# ── PATH ──────────────────────────────────────────────────────────────────
+# ~/.zsh/configs/post/path.zsh ya cargó asdf y deduplicó, pero se ejecuta ANTES
+# que este archivo, así que aquí se añade lo propio y se vuelve a deduplicar.
+#
+# El orden importa: ~/.asdf/shims va por delante de /opt/homebrew/bin porque
+# asdf gestiona ruby y python3, y Homebrew también trae binarios con ese nombre.
+path=(
+  "$HOME/.asdf/shims"
+  "$HOME/.local/bin"
+  /opt/homebrew/bin
+  "$HOME/dotfiles-local/bin"
+  $path
+  "$HOME/.config/emacs/bin"
+)
+typeset -U path   # deduplica conservando la primera aparición
 
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# ── Historial y autocompletado ────────────────────────────────────────────
+# Antes lo aportaba oh-my-zsh; se dejó de cargar porque repetía compinit
+# (ya lo corre ~/.zsh/configs/post/completion.zsh) y con starship no aportaba
+# nada más. Aquí se conserva lo que sí se usaba de él.
+HISTSIZE=50000              # el upstream fija 4096 y recortaría ~/.zhistory
+SAVEHIST=10000
+setopt extended_history hist_expire_dups_first hist_ignore_space hist_verify share_history
+setopt always_to_end complete_in_word interactive_comments long_list_jobs pushd_ignore_dups
+unsetopt flow_control
 
-# Notes from the terminal based on:
-# http://www.pc-freak.net/blog/tip-quick-note-taking-on-gnu-linux-and-freebsd-from-terminal-or-console/
-# Modified by Alan Maciel Modified to use emacs org mode
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+
+# ── Prompt ────────────────────────────────────────────────────────────────
+export STARSHIP_CONFIG="$HOME/dotfiles-local/zsh/starship.toml"
+eval "$(starship init zsh)"
+
+# ── autojump ──────────────────────────────────────────────────────────────
+# Instalado con Homebrew. La ruta /usr/local es la de los Mac Intel; en Apple
+# Silicon el prefijo es /opt/homebrew, por eso antes no se cargaba nunca.
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# ── Notas rápidas en org-mode ─────────────────────────────────────────────
+# Basado en http://www.pc-freak.net/blog/tip-quick-note-taking-on-gnu-linux-and-freebsd-from-terminal-or-console/
 n() {
   emacs ~/Dropbox/docs/Notes/"$*".org
 }
+
 nls() {
   ls -c ~/Dropbox/docs/Notes/ | grep "$1"
 }
-
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=$HOME/dotfiles-local/zsh/starship.toml
-
-# aliases
-[[ -f ~/.aliases.local ]] && source ~/.aliases.local
-

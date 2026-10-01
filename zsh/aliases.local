@@ -1,106 +1,73 @@
-echo "Loading .aliases.local"
+# ~/.aliases.local — alias personales.
+# Lo carga ~/.aliases (repo dotfiles) al final, así que lo de aquí gana
+# sobre el upstream. Solo se redefine algo si es a propósito.
 
-# Productivity
-alias todo='$EDITOR ~/.todo'
-
-# Show/hide files in Finder
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-
-# Tmux 
-alias tmux="tmux -2"
-
-# Push and pop directories on directory stack
+# ── Navegación ────────────────────────────────────────────────────────────
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias -- -='cd -'
 alias pu='pushd'
 alias po='popd'
 
-# Basic directory operations
-alias ...='cd ../..'
-alias -- -='cd -'
+alias d='cd ~/Dropbox'
+alias p='cd ~/Projects'
 
-# Super user
-alias _='sudo'
-alias please='sudo'
-
-#alias g='grep -in'
-
-# Show history
-alias history='fc -l 1'
-
-# List direcory contents
-alias lsa='ls -lah'
+# ── Listados ──────────────────────────────────────────────────────────────
 alias l='ls -lA1'
-alias ll='ls -l'
 alias la='ls -lA'
-alias sl=ls # often screw this up
+alias ll='ls -l'          # el upstream usa "ls -al"; aquí se prefiere sin ocultos
+alias lsa='ls -lah'
+alias sl='ls'             # por los dedos rápidos
 
-alias afind='ack-grep -il'
+# ── Archivos y sistema ────────────────────────────────────────────────────
+alias o='open'
+alias oo='open .'
+alias afind='ack -il'     # antes llamaba a ack-grep, que no existe en macOS
+alias h='history'
+alias notify='afplay /System/Library/Sounds/Submarine.aiff -v 10'
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
+# Mostrar/ocultar archivos ocultos en Finder
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
-# Shortcuts
-alias d="cd ~/Dropbox"
-alias p="cd ~/Projects"
-alias g="git"
-alias h="history"
-# alias j="jobs"
-alias v="$VISUAL"
-alias m="mate ."
-alias s="subl ."
-alias o="open"
-alias oo="open ."
+# ── Editores ──────────────────────────────────────────────────────────────
+alias e='open -a emacs'   # GUI (Doom). El upstream define e="$EDITOR" (terminal)
+alias todo='$EDITOR ~/.todo'
 
-# git
-alias gl='git pull'
-alias gp='git push'
+# ── Git ───────────────────────────────────────────────────────────────────
+# Nota: `g` NO se define aquí. ~/.zsh/functions/g ya da algo mejor:
+# sin argumentos hace `git status`, con argumentos actúa como `git`.
+alias gs='git status'
+alias gst='git status -sb'
 alias gd='git diff'
 alias gc='git commit'
 alias gca='git commit -a'
+alias gcm='git commit -a -m'
 alias gco='git checkout'
 alias gb='git branch'
-alias gs='git status'
-alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
-alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
-# glo -p  if you want to see the lines that changed
+alias ga='git add .'
+alias gl='git pull'
+alias gp='git push'
+alias gr='git remote -v'
+alias glg='git log --pretty=format:"%C(auto)%h - %an, %ar %n  %s %n"'
 alias glo="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
-# change from: http://www.readysetrails.com/index.php/2111/5-mistakes-that-make-you-look-like-a-rails-n00b/
-# you can see the full history, with changes and explanation messages with a command like:
-# gwc app/models/user.rb
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
-# added alan maciel 2 ago 2013
-alias ctags="`brew --prefix`/bin/ctags"
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
 
-# tmuxinator
-alias mux="tmuxinator"
-
-#terminal italic so it can show italics in tmux
-alias ssh="TERM=xterm-256color ssh"
-
-# Launch GUI Emacs (Doom macs) from command line in OSX
-alias e='open -a emacs $1'
-# alias doom='open -a emacs $1'
-
-# bundle exec
-alias be="bundle exec"
-
-# aliases accord to deep dive ruby
-alias gis='git status'
-
-alias gis='git status ‐sb'
-alias gil='git log ‐‐pretty=format:"%C(auto)%h ‐ %an, %ar %n  %s %n"'
-alias gic='git checkout'
-alias gim='git commit ‐a ‐m'
-alias gas='git add .'
-alias gir='git remote ‐v'
-
+# ── Ruby / Rails ──────────────────────────────────────────────────────────
+alias be='bundle exec'
 alias rs='rails s'
 alias rc='rails c'
 
-# Play sound
-alias notify='afplay /System/Library/Sounds/Submarine.aiff -v 10'
+# ── Terminal remota ───────────────────────────────────────────────────────
+# Fuerza un TERM que el host remoto sí conozca: Ghostty anuncia xterm-ghostty
+# y casi ningún servidor trae ese terminfo.
+alias ssh='TERM=xterm-256color ssh'
+
+# ── Super usuario ─────────────────────────────────────────────────────────
+alias _='sudo'
+alias please='sudo'

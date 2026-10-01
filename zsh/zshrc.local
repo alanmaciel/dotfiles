@@ -5,7 +5,7 @@
 #   .zprofile  -> brew shellenv                    (solo shells de login)
 #   .zshrc     -> ~/.zsh/functions/*
 #              -> ~/.zsh/configs/*.zsh             (color, editor, history, options…)
-#              -> ~/.zsh/configs/post/*.zsh        (compinit, asdf, PATH)
+#              -> ~/.zsh/configs/post/*.zsh        (compinit, PATH)
 #              -> ESTE ARCHIVO
 #              -> ~/.aliases -> ~/.aliases.local
 #
@@ -26,13 +26,9 @@ export VISUAL=$EDITOR
 # Para sesiones remotas sin terminfo, el alias `ssh` de .aliases.local lo fija.
 
 # ── PATH ──────────────────────────────────────────────────────────────────
-# ~/.zsh/configs/post/path.zsh ya cargó asdf y deduplicó, pero se ejecuta ANTES
-# que este archivo, así que aquí se añade lo propio y se vuelve a deduplicar.
-#
-# El orden importa: ~/.asdf/shims va por delante de /opt/homebrew/bin porque
-# asdf gestiona ruby y python3, y Homebrew también trae binarios con ese nombre.
+# ~/.zsh/configs/post/path.zsh ya dedupló, pero se ejecuta ANTES que este
+# archivo, así que aquí se añade lo propio y se vuelve a deduplicar.
 path=(
-  "$HOME/.asdf/shims"
   "$HOME/.local/bin"
   /opt/homebrew/bin
   "$HOME/dotfiles-local/bin"
@@ -40,6 +36,12 @@ path=(
   "$HOME/.config/emacs/bin"
 )
 typeset -U path   # deduplica conservando la primera aparición
+
+# ── mise (versiones de ruby, python…) ─────────────────────────────────────
+# Va después de fijar PATH: mise antepone las rutas de la versión activa en
+# cada directorio, por delante de los ruby/python de Homebrew. Lee
+# ~/.tool-versions, ~/.config/mise/config.toml y los .ruby-version.
+eval "$(mise activate zsh)"
 
 # ── Historial y autocompletado ────────────────────────────────────────────
 # Antes lo aportaba oh-my-zsh; se dejó de cargar porque repetía compinit

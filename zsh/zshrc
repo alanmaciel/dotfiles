@@ -117,7 +117,10 @@ nls() {
 }
 
 # ── Prompt ────────────────────────────────────────────────────────────────
-# Lee ~/.config/starship.toml (enlazado desde este repo).
+# ~/.config/starship.toml está enlazado desde este repo. Se fija explícitamente
+# porque procesos de larga vida (p. ej. el servidor de herdr) pueden heredar
+# un STARSHIP_CONFIG viejo.
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init zsh)"
 
 # ── autojump ──────────────────────────────────────────────────────────────

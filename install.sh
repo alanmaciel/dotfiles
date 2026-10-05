@@ -45,6 +45,7 @@ link emacs/spacemacs.local             "$HOME/.spacemacs"
 
 # herdr
 link herdr/config.toml                 "$HOME/.config/herdr/config.toml"
+link herdr/doom-leader.sh              "$HOME/.config/herdr/doom-leader.sh"
 
 # Claude Code (el hook de herdr se instala aparte: herdr integration install claude)
 link claude/settings.json              "$HOME/.claude/settings.json"

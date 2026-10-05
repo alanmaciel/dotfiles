@@ -41,3 +41,37 @@ enabled = false
 sidebar_bg = "#0a0a10"
 active_row_bg = "#3d4a6b"
 selection_bg = "#5a4a7a"
+
+# ── Keys: Doom Emacs-style leader on ctrl+b ───────────────────────────
+# prefix+w / prefix+tab / prefix+b open which-key popups (doom-leader.sh),
+# so `C-b w v` ≈ `SPC w v`, `C-b TAB ]` ≈ `SPC TAB ]`, `C-b b k` ≈ `SPC b k`.
+[keys]
+prefix = "ctrl+b"
+workspace_picker = "prefix+period"
+toggle_sidebar = "prefix+shift+b"
+cycle_pane_next = "prefix+o"
+open_notification_target = "prefix+shift+o"
+
+[[keys.command]]
+key = "prefix+w"
+type = "popup"
+command = "~/.config/herdr/doom-leader.sh w"
+description = "SPC w (windows/panes)"
+width = 44
+height = 14
+
+[[keys.command]]
+key = "prefix+tab"
+type = "popup"
+command = "~/.config/herdr/doom-leader.sh tab"
+description = "SPC TAB (workspaces)"
+width = 44
+height = 12
+
+[[keys.command]]
+key = "prefix+b"
+type = "popup"
+command = "~/.config/herdr/doom-leader.sh b"
+description = "SPC b (tabs)"
+width = 44
+height = 12

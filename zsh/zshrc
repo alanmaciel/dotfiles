@@ -60,7 +60,7 @@ setopt hist_expire_dups_first hist_ignore_space hist_verify share_history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # ── Teclado (modo vi + atajos tipo emacs) ─────────────────────────────────
-stty -ixon            # libera ^Q y ^S
+[[ -t 0 ]] && stty -ixon   # libera ^Q y ^S (solo con terminal)
 bindkey -v
 bindkey "^F" vi-cmd-mode
 bindkey "^A" beginning-of-line

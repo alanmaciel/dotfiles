@@ -31,6 +31,8 @@ destino es un archivo real, lo mueve a `<archivo>.bak` antes de enlazar.
 | `doom/`                | `~/.config/doom`                 |
 | `emacs/spacemacs.local`| `~/.spacemacs`                   |
 | `herdr/config.toml`    | `~/.config/herdr/config.toml`    |
+| `claude/settings.json` | `~/.claude/settings.json`        |
+| `claude/statusline.sh` | `~/.claude/statusline.sh`        |
 | `iterm/`               | `~/.iterm_color_schemes`, terminfo |
 | `bin/`                 | en el `PATH` desde `~/.zshrc`    |
 

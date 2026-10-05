@@ -46,6 +46,10 @@ link emacs/spacemacs.local             "$HOME/.spacemacs"
 # herdr
 link herdr/config.toml                 "$HOME/.config/herdr/config.toml"
 
+# Claude Code (el hook de herdr se instala aparte: herdr integration install claude)
+link claude/settings.json              "$HOME/.claude/settings.json"
+link claude/statusline.sh              "$HOME/.claude/statusline.sh"
+
 # Terminal
 link iterm/iterm_color_schemes         "$HOME/.iterm_color_schemes"
 link iterm/xterm-256color-italic.terminfo "$HOME/.xterm-256color-italic.terminfo"

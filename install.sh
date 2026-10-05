@@ -52,6 +52,7 @@ link claude/settings.json              "$HOME/.claude/settings.json"
 link claude/statusline.sh              "$HOME/.claude/statusline.sh"
 
 # Terminal
+link ghostty/config                   "$HOME/.config/ghostty/config"
 link iterm/iterm_color_schemes         "$HOME/.iterm_color_schemes"
 link iterm/xterm-256color-italic.terminfo "$HOME/.xterm-256color-italic.terminfo"
 

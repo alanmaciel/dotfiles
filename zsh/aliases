@@ -1,6 +1,10 @@
-# ~/.aliases.local — alias personales.
-# Lo carga ~/.aliases (repo dotfiles) al final, así que lo de aquí gana
-# sobre el upstream. Solo se redefine algo si es a propósito.
+# ~/.aliases — alias personales. Lo carga ~/.zshrc al final.
+
+# ── Básicos (heredados de thoughtbot/dotfiles) ────────────────────────────
+alias ln='ln -v'
+alias mkdir='mkdir -p'
+alias path='echo $PATH | tr -s ":" "\n"'   # PATH, una ruta por línea
+alias b='bundle'
 
 # ── Navegación ────────────────────────────────────────────────────────────
 alias ..='cd ..'
@@ -17,7 +21,7 @@ alias p='cd ~/Projects'
 # ── Listados ──────────────────────────────────────────────────────────────
 alias l='ls -lA1'
 alias la='ls -lA'
-alias ll='ls -l'          # el upstream usa "ls -al"; aquí se prefiere sin ocultos
+alias ll='ls -l'
 alias lsa='ls -lah'
 alias sl='ls'             # por los dedos rápidos
 
@@ -33,11 +37,11 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall 
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
 # ── Editores ──────────────────────────────────────────────────────────────
-alias e='open -a emacs'   # GUI (Doom). El upstream define e="$EDITOR" (terminal)
+alias e='open -a emacs'   # Emacs GUI (Doom)
 alias todo='$EDITOR ~/.todo'
 
 # ── Git ───────────────────────────────────────────────────────────────────
-# Nota: `g` NO se define aquí. ~/.zsh/functions/g ya da algo mejor:
+# Nota: `g` NO se define aquí. La función g de ~/.zshrc da algo mejor:
 # sin argumentos hace `git status`, con argumentos actúa como `git`.
 alias gs='git status'
 alias gst='git status -sb'

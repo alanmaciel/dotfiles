@@ -1,6 +1,0 @@
-# ~/.zshenv.local — se carga en TODOS los shells (incluidos los no interactivos:
-# scp, rsync, ssh <cmd>, hooks de git). No imprimir nada aquí ni editar PATH:
-# cualquier salida rompe las herramientas que parsean la sesión remota, y
-# ~/.zshenv avisa si se toca el PATH (ese sitio es ~/.zshrc.local).
-
-export CUCUMBER_PUBLISH_QUIET=true

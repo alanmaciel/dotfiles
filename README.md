@@ -1,54 +1,51 @@
 # My dotfiles
 
-Based on thoughtbot's laptop and dotfiles.
-Thoughtbot explain this in their [Playbook](http://playbook.thoughtbot.com/#laptop-setup).
+Configuración personal para macOS (Apple Silicon). Un solo repo, sin dependencias
+de otros dotfiles: lo que se usaba de [thoughtbot/dotfiles](https://github.com/thoughtbot/dotfiles)
+está reescrito aquí.
 
-## Start here
-* Clone and install Thoughtbot's [Laptop Script](https://github.com/thoughtbot/laptop)
-* Clone and install Thoughtbot's [dotfiles](https://github.com/thoughtbot/dotfiles)
+## Instalación
 
-## Ingredients
-Thoughtbot's Laptop Script brings:
+```sh
+git clone https://github.com/alanmaciel/dotfiles.git ~/dotfiles
+~/dotfiles/install.sh
+```
 
-* Rbenv
-* Oh my Zsh
-* Tmux
-* Vim editor
-* Git
-* Other cool things...
+`install.sh` crea symlinks desde `$HOME` hacia este repo. Es idempotente; si un
+destino es un archivo real, lo mueve a `<archivo>.bak` antes de enlazar.
 
+## Contenido
 
-* Clone and install [oh my zsh](https://ohmyz.sh/#install)
-* Install [Emacs Plus](https://github.com/d12frosted/homebrew-emacs-plus) using Brew.
-* Install [Doom Emacs](https://github.com/hlissner/doom-emacs#install) using Brew. 
-* Install [starship prompt] (https://github.com/starship/starship) using Brew.
+| Ruta del repo          | Se enlaza en                     |
+| ---------------------- | -------------------------------- |
+| `zsh/zshrc`            | `~/.zshrc`                       |
+| `zsh/zshenv`           | `~/.zshenv`                      |
+| `zsh/aliases`          | `~/.aliases`                     |
+| `zsh/zsh_custom`       | `~/.zsh_custom`                  |
+| `starship.toml`        | `~/.config/starship.toml`        |
+| `git/gitconfig`        | `~/.gitconfig`                   |
+| `git/gitignore`        | `~/.gitignore`                   |
+| `tmux/tmux.conf`       | `~/.tmux.conf`                   |
+| `tmux/tmuxinator.zsh`  | `~/.tmuxinator.zsh`              |
+| `psql/psqlrc`          | `~/.psqlrc`                      |
+| `doom/`                | `~/.config/doom`                 |
+| `emacs/spacemacs.local`| `~/.spacemacs`                   |
+| `herdr/config.toml`    | `~/.config/herdr/config.toml`    |
+| `iterm/`               | `~/.iterm_color_schemes`, terminfo |
+| `bin/`                 | en el `PATH` desde `~/.zshrc`    |
 
-### Personal config files
-Clone my personal [dotfiles](https://github.com/alanmaciel/dotfiles) and run [~/dotfiles-local/install.sh](https://github.com/alanmaciel/dotfiles/blob/master/install.sh)
+## Requisitos (Homebrew)
 
-This will install the configuration of the following:
-* vim (using spacevim)
-* emacs (using doom emacs)
-* zsh 
-* git 
-* iterm 
-* tmux
+```sh
+brew install mise starship autojump tmux herdr
+```
 
+Emacs: [Emacs Plus](https://github.com/d12frosted/homebrew-emacs-plus) +
+[Doom Emacs](https://github.com/doomemacs/doomemacs#install).
 
-### Some useful links
+## Enlaces útiles
 
-* [Oh MyZsh](https://github.com/robbyrussell/oh-my-zsh)
-* [Vim-plug](https://github.com/junegunn/vim-plug)
 * [Tmuxinator](https://github.com/tmuxinator/tmuxinator)
-* [iTerm2 Material Design color scheme](https://github.com/MartinSeeler/iterm2-material-colors)
-* [Google Material Color Style](http://www.google.com/design/spec/style/color.html)
-
-### Troubleshooting
-* [How to switch from RVM to rbenv](https://robots.thoughtbot.com/using-rbenv-to-manage-rubies-and-gems)
-* [Managing Gemsets in Rbenv](http://sdqali.in/blog/2013/09/12/managing-gemsets-in-rbenv/)
-* [Changing vim highlight underline](http://stackoverflow.com/questions/8640276/how-do-i-change-my-vim-highlight-line-to-not-be-an-underline)
-
-
-
-
-
+* [Starship](https://starship.rs)
+* [mise](https://mise.jdx.dev)
+* [herdr](https://herdr.dev/docs/)

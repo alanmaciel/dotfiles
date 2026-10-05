@@ -1,0 +1,127 @@
+# ~/.zshrc — configuración de shells interactivos.
+#
+# Cadena de carga en esta máquina:
+#   .zshenv    -> zsh/zshenv                       (todos los shells)
+#   .zprofile  -> brew shellenv                    (solo shells de login)
+#   .zshrc     -> ESTE ARCHIVO -> ~/.aliases
+#
+# Antes se apoyaba en la base de thoughtbot/dotfiles (~/.zsh/configs/*).
+# Lo que se usaba de ella está reescrito aquí; el resto se descartó.
+
+# ── Entorno ───────────────────────────────────────────────────────────────
+export PGHOST=localhost
+
+# Editor: wrapper propio sobre emacsclient.
+# VISUAL tiene prioridad sobre EDITOR (git, crontab…), así que ambos apuntan a ec.
+export EDITOR=$HOME/dotfiles/bin/ec
+export VISUAL=$EDITOR
+
+# Homebrew: sin analíticas y sin borrar dependencias "huérfanas" automáticamente.
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTOREMOVE=1
+
+# `ls` y compañía con colores; constantes $fg/$reset_color disponibles.
+export CLICOLOR=1
+autoload -U colors && colors
+
+# TERM se deja en manos de la terminal a propósito. Forzarlo a xterm-256color
+# rompía las capacidades extendidas de Ghostty, que anuncia xterm-ghostty.
+# Para sesiones remotas sin terminfo, el alias `ssh` de ~/.aliases lo fija.
+
+# ── PATH ──────────────────────────────────────────────────────────────────
+path=(
+  "$HOME/.local/bin"
+  /opt/homebrew/bin
+  "$HOME/dotfiles/bin"
+  $path
+  "$HOME/.config/emacs/bin"
+)
+typeset -U path   # deduplica conservando la primera aparición
+
+# ── mise (versiones de ruby, python…) ─────────────────────────────────────
+# Va después de fijar PATH: mise antepone las rutas de la versión activa en
+# cada directorio, por delante de los ruby/python de Homebrew. Lee
+# ~/.tool-versions, ~/.config/mise/config.toml y los .ruby-version.
+eval "$(mise activate zsh)"
+
+# ── Opciones ──────────────────────────────────────────────────────────────
+setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars pushd_ignore_dups
+DIRSTACKSIZE=5
+setopt extendedglob interactive_comments long_list_jobs
+unsetopt nomatch      # permite [ y ] sin escapar
+unsetopt flow_control
+
+# ── Historial ─────────────────────────────────────────────────────────────
+HISTFILE=~/.zhistory
+HISTSIZE=50000
+SAVEHIST=10000
+setopt hist_ignore_all_dups inc_append_history extended_history
+setopt hist_expire_dups_first hist_ignore_space hist_verify share_history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# ── Teclado (modo vi + atajos tipo emacs) ─────────────────────────────────
+stty -ixon            # libera ^Q y ^S
+bindkey -v
+bindkey "^F" vi-cmd-mode
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^K" kill-line
+bindkey "^R" history-incremental-search-backward
+bindkey "^P" history-search-backward
+bindkey "^Y" accept-and-hold
+bindkey "^N" insert-last-word
+bindkey "^Q" push-line-or-edit
+bindkey -s "^T" "^[Isudo ^[A"   # antepone sudo a la línea actual
+
+# ── Autocompletado ────────────────────────────────────────────────────────
+# compinit con caché: regenera ~/.zcompdump solo si tiene más de 24 h.
+autoload -Uz compinit
+if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
+  compinit -d $HOME/.zcompdump
+else
+  compinit -C
+fi
+
+setopt always_to_end complete_in_word
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+
+# ── Funciones ─────────────────────────────────────────────────────────────
+# g: sin argumentos hace `git status`; con argumentos actúa como `git`.
+g() {
+  if [[ $# -gt 0 ]]; then
+    git "$@"
+  else
+    git status
+  fi
+}
+compdef g=git
+
+# mcd: crea un directorio y entra en él.
+mcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+# Notas rápidas en org-mode.
+# Basado en http://www.pc-freak.net/blog/tip-quick-note-taking-on-gnu-linux-and-freebsd-from-terminal-or-console/
+n() {
+  emacs ~/Dropbox/docs/Notes/"$*".org
+}
+
+nls() {
+  ls -c ~/Dropbox/docs/Notes/ | grep "$1"
+}
+
+# ── Prompt ────────────────────────────────────────────────────────────────
+# Lee ~/.config/starship.toml (enlazado desde este repo).
+eval "$(starship init zsh)"
+
+# ── autojump ──────────────────────────────────────────────────────────────
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# ── Alias ─────────────────────────────────────────────────────────────────
+[[ -f ~/.aliases ]] && source ~/.aliases

@@ -16,12 +16,23 @@
       }
     ]
   },
-  "tui": "fullscreen",
-  "theme": "dark",
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline.sh",
     "padding": 0
-  }
+  },
+  "enabledPlugins": {
+    "herdr@claude-kit": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-kit": {
+      "source": {
+        "source": "github",
+        "repo": "alanmaciel/claude-kit"
+      }
+    }
+  },
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
 }
